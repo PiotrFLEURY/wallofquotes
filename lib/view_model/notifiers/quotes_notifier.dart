@@ -1,36 +1,31 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wallofquotes/data_sources/firebase_db.dart';
 import 'package:wallofquotes/model/quote.dart';
 
 class QuotesNotifier extends StateNotifier<List<Quote>> {
-  QuotesNotifier() : super([]);
+  QuotesNotifier(this._firebaseDb) : super([]);
+
+  final FirebaseDb _firebaseDb;
 
   void fetchQuotes() {
-    // TODO: fetch from server
-    state = [
-      Quote(
-        id: 1,
-        author: 'Albert Einstein',
-        text:
-            'C\'est pas nous qui sommes en retard, ce sont les estimations qui sont fausses !',
-      ),
-      Quote(
-        id: 2,
-        text: 'Pour moi le partage c\'est récupérer',
-        author: 'Azimov',
-      ),
-    ];
+    _firebaseDb.fetchQuotes().then((quotes) {
+      state = quotes;
+    });
   }
 
   void addQuote(Quote quote) {
     state = [...state, quote];
+
+    _firebaseDb.addQuote(quote);
   }
 
   void updateQuote(Quote quote) {
-    // TODO: send to server
     state = [
       for (final q in state)
         if (q.id == quote.id) quote else q,
     ];
+
+    _firebaseDb.updateQuote(quote);
   }
 
   void fireQuote(Quote quote) {

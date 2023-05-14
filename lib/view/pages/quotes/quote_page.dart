@@ -72,7 +72,7 @@ class _QuotePageState extends ConsumerState<QuotePage> {
           setState(() {
             _dragOffset = Offset.zero;
           });
-          ref.read(randomQuoteProvider.notifier).fetchRandomQuote();
+          ref.read(quotesProvider.notifier).fetchQuotes();
         },
         child: Background(
           child: Column(
@@ -90,7 +90,7 @@ class _QuotePageState extends ConsumerState<QuotePage> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 48.0),
                   child: Text(
-                    randomQuote.text,
+                    randomQuote.text.isEmpty ? 'Loading...' : randomQuote.text,
                     style: GoogleFonts.oswald(
                       fontSize: 48,
                       color: Colors.white,
