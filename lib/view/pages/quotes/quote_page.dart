@@ -72,7 +72,11 @@ class _QuotePageState extends ConsumerState<QuotePage> {
           setState(() {
             _dragOffset = Offset.zero;
           });
-          ref.read(quotesProvider.notifier).fetchQuotes();
+          // only if delta is greater than 100
+          final velocity = details.primaryVelocity ?? 0;
+          if (velocity.abs() > 100) {
+            ref.read(quotesProvider.notifier).fetchQuotes();
+          }
         },
         child: Background(
           child: Column(
@@ -100,7 +104,9 @@ class _QuotePageState extends ConsumerState<QuotePage> {
                   ),
                 ),
               ),
-              const SizedBox(),
+              const SizedBox(
+                height: 64,
+              ),
             ],
           ),
         ),
