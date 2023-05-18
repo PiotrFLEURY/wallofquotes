@@ -9,6 +9,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  adaptive_number:
+    dependency: transitive
+    description:
+      name: adaptive_number
+      sha256: "3a567544e9b5c9c803006f51140ad544aedc79604fd4f3f2c1380003f97c1d77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  antlr4:
+    dependency: transitive
+    description:
+      name: antlr4
+      sha256: aeb591332cd6a32d298389df1ab41f2ce7b117da98c58eae35785ed44ee0abb3
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.12.0"
   archive:
     dependency: transitive
     description:
@@ -41,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  cel:
+    dependency: transitive
+    description:
+      name: cel
+      sha256: "2b5adb2c4866311817f6444996a67fd14f016cfcfb57a8d9c7fb0defeea2eb62"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
   characters:
     dependency: transitive
     description:
@@ -129,6 +153,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dart_jsonwebtoken:
+    dependency: transitive
+    description:
+      name: dart_jsonwebtoken
+      sha256: "2a42e97c0b8b4e9a42b24a71453635f445c7b66c7d7c81e3a429f37ead9fe778"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.1"
+  ed25519_edwards:
+    dependency: transitive
+    description:
+      name: ed25519_edwards
+      sha256: "6ce0112d131327ec6d42beede1e5dfd526069b18ad45dcf654f15074ad9276cd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.1"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -137,6 +185,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  fake_cloud_firestore:
+    dependency: "direct dev"
+    description:
+      name: fake_cloud_firestore
+      sha256: "48e4dc3f4ed7448c7f7f9c7697e78b835d5954029f8edb1bc1afa4bb518f5f17"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1+1"
+  fake_firebase_security_rules:
+    dependency: transitive
+    description:
+      name: fake_firebase_security_rules
+      sha256: d35f2eb7850e752397e886c803425d71df78820a870f0849a465e22bfd26119b
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
   ffi:
     dependency: transitive
     description:
@@ -185,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.0"
+  firebase_auth_mocks:
+    dependency: "direct dev"
+    description:
+      name: firebase_auth_mocks
+      sha256: f3b7ff266416facb7dec96be76d06ad3aedd4f9fe0d2ffaba11cb3f5e48ecc12
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.11.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
@@ -225,6 +297,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.0"
+  fixnum:
+    dependency: transitive
+    description:
+      name: fixnum
+      sha256: "25517a4deb0c03aa0f32fd12db525856438902d9c16536311e76cdc57b31d7d1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -328,6 +408,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: db2ff852ed77090ba9f62d3611e4208a3d11dfa35991a81ae724c113fcb3e3f7
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.0"
   logging:
     dependency: transitive
     description:
@@ -360,6 +448,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  mock_exceptions:
+    dependency: transitive
+    description:
+      name: mock_exceptions
+      sha256: "6e3e623712d2c6106ffe9e14732912522b565ddaa82a8dcee6cd4441b5984056"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.2"
+  more:
+    dependency: transitive
+    description:
+      name: more
+      sha256: ad9207a4abefaff7099e8da509ba2adab4cfa4203c2ebbfc35070f88e18b7c82
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.10.2"
   path:
     dependency: transitive
     description:
@@ -456,6 +560,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   riverpod:
     dependency: transitive
     description:
@@ -464,6 +576,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  rx:
+    dependency: transitive
+    description:
+      name: rx
+      sha256: efe1fb4170741401370e365a76602a631b584097d6f44d40c40cbc185b65644d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.3"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -525,6 +653,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      sha256: "0ea99cd2f9352b2586583ab2ce6489d1f95a5f6de6fb9492faaf97ae2060f0aa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:
@@ -533,6 +669,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vector_math:
     dependency: transitive
     description:

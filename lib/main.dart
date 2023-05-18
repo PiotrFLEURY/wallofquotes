@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wallofquotes/view/app/app.dart';
@@ -13,5 +14,10 @@ void main() async {
 
   await FirebaseAuth.instance.signInAnonymously();
 
-  runApp(const WallOfQuotes());
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
+    analytics: analytics,
+  );
+
+  runApp(WallOfQuotes(navigatorObserver: observer));
 }

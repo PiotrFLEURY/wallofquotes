@@ -2,7 +2,9 @@ import 'package:wallofquotes/model/quote.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseDb {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  const FirebaseDb(this.firestore);
+
+  final FirebaseFirestore firestore;
 
   Future<List<Quote>> fetchQuotes() async {
     final dataset = await firestore.collection('quotes').get();

@@ -103,7 +103,7 @@ class _QuotePageState extends ConsumerState<QuotePage> {
                   child: Text(
                     currentQuote.text.isEmpty
                         ? 'Loading...'
-                        : currentQuote.text,
+                        : currentQuote.formattedText,
                     style: GoogleFonts.oswald(
                       fontSize: 48,
                       color: Colors.white,

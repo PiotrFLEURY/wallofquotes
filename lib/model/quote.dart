@@ -45,6 +45,10 @@ class Quote {
     };
   }
 
+  // Returns the text the first letter upper case
+  get formattedText =>
+      text.isEmpty ? '' : text[0].toUpperCase() + text.substring(1);
+
   Quote copyWith({
     String? text,
     String? author,
