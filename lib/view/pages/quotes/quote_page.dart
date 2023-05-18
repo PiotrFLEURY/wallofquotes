@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallofquotes/model/quote.dart';
+import 'package:wallofquotes/services/analytics_service.dart';
 import 'package:wallofquotes/view/pages/quotes/widgets/widgets.dart';
 import 'package:wallofquotes/view/style/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,10 +21,11 @@ class _QuotePageState extends ConsumerState<QuotePage> {
   @override
   Widget build(BuildContext context) {
     final randomQuote = ref.watch(randomQuoteProvider) ?? Quote.empty;
+    final analytics = ref.read(analyticsServiceProvider);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: _addQuote,
+        onPressed: () => _addQuote(analytics),
         shape: BeveledRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
@@ -51,10 +53,10 @@ class _QuotePageState extends ConsumerState<QuotePage> {
             likeCount: randomQuote.likes,
             dislikeCount: randomQuote.dislikes,
             reportCount: randomQuote.reports,
-            onFirePressed: () => _fireQuote(randomQuote),
-            onLikePressed: () => _likeQuote(randomQuote),
-            onDislikePressed: () => _dislikeQuote(randomQuote),
-            onReportPressed: () => _reportQuote(randomQuote),
+            onFirePressed: () => _fireQuote(randomQuote, analytics),
+            onLikePressed: () => _likeQuote(randomQuote, analytics),
+            onDislikePressed: () => _dislikeQuote(randomQuote, analytics),
+            onReportPressed: () => _reportQuote(randomQuote, analytics),
           ),
         ),
       ),
@@ -75,6 +77,7 @@ class _QuotePageState extends ConsumerState<QuotePage> {
           // only if delta is greater than 100
           final velocity = details.primaryVelocity ?? 0;
           if (velocity.abs() > 100) {
+            analytics.logSwipe();
             ref.read(quotesProvider.notifier).fetchQuotes();
           }
         },
@@ -114,23 +117,28 @@ class _QuotePageState extends ConsumerState<QuotePage> {
     );
   }
 
-  void _addQuote() {
+  void _addQuote(AnalyticsService analytics) {
+    analytics.logAddQuote();
     context.go('/add');
   }
 
-  void _fireQuote(Quote quote) {
+  void _fireQuote(Quote quote, AnalyticsService analytics) {
+    analytics.logFireQuote();
     ref.read(quotesProvider.notifier).fireQuote(quote);
   }
 
-  void _likeQuote(Quote quote) {
+  void _likeQuote(Quote quote, AnalyticsService analytics) {
+    analytics.logLikeQuote();
     ref.read(quotesProvider.notifier).likeQuote(quote);
   }
 
-  void _dislikeQuote(Quote quote) {
+  void _dislikeQuote(Quote quote, AnalyticsService analytics) {
+    analytics.logDislikeQuote();
     ref.read(quotesProvider.notifier).dislikeQuote(quote);
   }
 
-  void _reportQuote(Quote quote) {
+  void _reportQuote(Quote quote, AnalyticsService analytics) {
+    analytics.logReportQuote();
     ref.read(quotesProvider.notifier).reportQuote(quote);
   }
 }

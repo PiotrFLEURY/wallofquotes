@@ -65,6 +65,8 @@ class _AddQuotePageState extends ConsumerState<AddQuotePage> {
     FocusScope.of(context).unfocus();
     // send quote
     _sendQuote();
+    final analytics = ref.read(analyticsServiceProvider);
+    analytics.logSaveQuote();
   }
 
   void _sendQuote() {
