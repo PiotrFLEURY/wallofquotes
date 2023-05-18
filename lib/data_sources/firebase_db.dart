@@ -10,7 +10,10 @@ class FirebaseDb {
     final dataset = await firestore.collection('quotes').get();
 
     // convert to list of quotes
-    return dataset.docs.map((doc) => Quote.fromJson(doc.data())).toList();
+    return dataset.docs.map((doc) => Quote.fromJson(doc.data())).toList()
+      ..sort(
+        (a, b) => a.compareTo(b),
+      );
   }
 
   // add a quote

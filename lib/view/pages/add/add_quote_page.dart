@@ -79,9 +79,10 @@ class _AddQuotePageState extends ConsumerState<AddQuotePage> {
         author: _authorController.text,
         text: _quoteController.text,
       );
-      ref.read(quotesProvider.notifier).addQuote(quote);
-      // back to home
-      context.pop();
+      ref
+          .read(quotesProvider.notifier)
+          .addQuote(quote)
+          .then((value) => context.pop());
     } else {
       // show error
       showDialog(

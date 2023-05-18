@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallofquotes/model/quote.dart';
 
 class CurrentQuoteNotifier extends StateNotifier<({int index, Quote? quote})> {
-  CurrentQuoteNotifier(this.quotes) : super((index: 0, quote: null));
+  CurrentQuoteNotifier(this.quotes) : super((index: -1, quote: null));
 
   final List<Quote> quotes;
 

@@ -13,19 +13,30 @@ class QuotesNotifier extends StateNotifier<List<Quote>> {
   }
 
   // refresh quotes
-  void _refreshQuotes() {
-    _firebaseDb.fetchQuotes().then((quotes) {
-      state = quotes;
-    });
+  Future<void> _refreshQuotes() async {
+    final freshQuotes = await _firebaseDb.fetchQuotes();
+    state = freshQuotes;
   }
 
-  void addQuote(Quote quote) {
-    _firebaseDb.addQuote(quote);
+  Future<void> addQuote(Quote quote) async {
+    // add quote to list
+    state = [
+      ...state,
+      quote,
+    ]..sort((a, b) => a.compareTo(b));
 
-    _refreshQuotes();
+    await _firebaseDb.addQuote(quote);
+
+    await _refreshQuotes();
   }
 
   void updateQuote(Quote quote) {
+    // update quote in list
+    state = [
+      for (final q in state)
+        if (q.id == quote.id) quote else q,
+    ]..sort((a, b) => a.compareTo(b));
+
     _firebaseDb.updateQuote(quote);
   }
 

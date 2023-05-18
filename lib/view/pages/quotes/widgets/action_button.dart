@@ -5,12 +5,14 @@ class ActionButton extends StatelessWidget {
     super.key,
     required this.icon,
     required this.count,
-    required this.onPressed,
+    this.onPressed,
+    this.color = Colors.white,
   });
 
   final IconData icon;
   final int count;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +22,14 @@ class ActionButton extends StatelessWidget {
         IconButton(
           icon: Icon(
             icon,
-            color: Colors.white,
+            color: color,
           ),
           onPressed: onPressed,
         ),
         Text(
           '$count',
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: color,
           ),
         ),
       ],

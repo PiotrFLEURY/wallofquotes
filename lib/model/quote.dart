@@ -67,4 +67,17 @@ class Quote {
       reports: reports ?? this.reports,
     );
   }
+
+  compareTo(Quote b) {
+    // compare by hotness, then likes, then dislikes, then reports
+    if (hotness != b.hotness) {
+      return b.hotness - hotness;
+    } else if (likes != b.likes) {
+      return b.likes - likes;
+    } else if (dislikes != b.dislikes) {
+      return b.dislikes - dislikes;
+    } else {
+      return b.reports - reports;
+    }
+  }
 }
