@@ -65,4 +65,13 @@ class AnalyticsService {
       },
     );
   }
+
+  void logRefreshQuotes() {
+    analytics.logEvent(
+      name: 'refresh_quotes',
+      parameters: <String, dynamic>{
+        'time': DateTime.now().millisecondsSinceEpoch,
+      },
+    );
+  }
 }

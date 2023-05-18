@@ -7,20 +7,24 @@ class ActionBar extends StatelessWidget {
     required this.fireCount,
     required this.likeCount,
     required this.dislikeCount,
+    required this.quoteCount,
     required this.reportCount,
     required this.onFirePressed,
     required this.onLikePressed,
+    required this.onRefresh,
     required this.onDislikePressed,
     required this.onReportPressed,
   });
 
   final int fireCount;
   final int likeCount;
+  final int quoteCount;
   final int dislikeCount;
   final int reportCount;
 
   final VoidCallback onFirePressed;
   final VoidCallback onLikePressed;
+  final VoidCallback onRefresh;
   final VoidCallback onDislikePressed;
   final VoidCallback onReportPressed;
 
@@ -30,6 +34,7 @@ class ActionBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0, bottom: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ActionButton(
             icon: Icons.local_fire_department_outlined,
@@ -40,6 +45,16 @@ class ActionBar extends StatelessWidget {
             icon: Icons.favorite_border,
             count: likeCount,
             onPressed: onLikePressed,
+          ),
+          InkWell(
+            onTap: onRefresh,
+            child: Text(
+              '$quoteCount quotes',
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),
+            ),
           ),
           ActionButton(
             icon: Icons.thumb_down_alt_outlined,

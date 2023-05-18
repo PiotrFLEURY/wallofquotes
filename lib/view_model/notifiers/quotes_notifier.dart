@@ -8,23 +8,24 @@ class QuotesNotifier extends StateNotifier<List<Quote>> {
   final FirebaseDb _firebaseDb;
 
   void fetchQuotes() {
+    if (state.isNotEmpty) return;
+    _refreshQuotes();
+  }
+
+  // refresh quotes
+  void _refreshQuotes() {
     _firebaseDb.fetchQuotes().then((quotes) {
       state = quotes;
     });
   }
 
   void addQuote(Quote quote) {
-    state = [...state, quote];
-
     _firebaseDb.addQuote(quote);
+
+    _refreshQuotes();
   }
 
   void updateQuote(Quote quote) {
-    state = [
-      for (final q in state)
-        if (q.id == quote.id) quote else q,
-    ];
-
     _firebaseDb.updateQuote(quote);
   }
 
@@ -42,5 +43,9 @@ class QuotesNotifier extends StateNotifier<List<Quote>> {
 
   void reportQuote(Quote quote) {
     updateQuote(quote.copyWith(reports: quote.reports + 1));
+  }
+
+  void refreshQuotes() {
+    _refreshQuotes();
   }
 }

@@ -20,7 +20,8 @@ class _QuotePageState extends ConsumerState<QuotePage> {
 
   @override
   Widget build(BuildContext context) {
-    final randomQuote = ref.watch(randomQuoteProvider) ?? Quote.empty;
+    final quotes = ref.watch(quotesProvider);
+    final currentQuote = ref.watch(currentQuoteProvider).quote ?? Quote.empty;
     final analytics = ref.read(analyticsServiceProvider);
 
     return Scaffold(
@@ -49,19 +50,22 @@ class _QuotePageState extends ConsumerState<QuotePage> {
             ),
           ),
           child: ActionBar(
-            fireCount: randomQuote.hotness,
-            likeCount: randomQuote.likes,
-            dislikeCount: randomQuote.dislikes,
-            reportCount: randomQuote.reports,
-            onFirePressed: () => _fireQuote(randomQuote, analytics),
-            onLikePressed: () => _likeQuote(randomQuote, analytics),
-            onDislikePressed: () => _dislikeQuote(randomQuote, analytics),
-            onReportPressed: () => _reportQuote(randomQuote, analytics),
+            fireCount: currentQuote.hotness,
+            likeCount: currentQuote.likes,
+            quoteCount: quotes.length,
+            dislikeCount: currentQuote.dislikes,
+            reportCount: currentQuote.reports,
+            onFirePressed: () => _fireQuote(currentQuote, analytics),
+            onLikePressed: () => _likeQuote(currentQuote, analytics),
+            onRefresh: () => _refreshQuotes(analytics),
+            onDislikePressed: () => _dislikeQuote(currentQuote, analytics),
+            onReportPressed: () => _reportQuote(currentQuote, analytics),
           ),
         ),
       ),
       backgroundColor: mainColor,
       body: GestureDetector(
+        onTap: () => ref.read(currentQuoteProvider.notifier).nextQuote(),
         onVerticalDragUpdate: (details) {
           setState(() {
             _dragOffset = Offset(
@@ -78,7 +82,7 @@ class _QuotePageState extends ConsumerState<QuotePage> {
           final velocity = details.primaryVelocity ?? 0;
           if (velocity.abs() > 100) {
             analytics.logSwipe();
-            ref.read(quotesProvider.notifier).fetchQuotes();
+            ref.read(currentQuoteProvider.notifier).nextQuote();
           }
         },
         child: Background(
@@ -97,7 +101,9 @@ class _QuotePageState extends ConsumerState<QuotePage> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 48.0),
                   child: Text(
-                    randomQuote.text.isEmpty ? 'Loading...' : randomQuote.text,
+                    currentQuote.text.isEmpty
+                        ? 'Loading...'
+                        : currentQuote.text,
                     style: GoogleFonts.oswald(
                       fontSize: 48,
                       color: Colors.white,
@@ -125,20 +131,29 @@ class _QuotePageState extends ConsumerState<QuotePage> {
   void _fireQuote(Quote quote, AnalyticsService analytics) {
     analytics.logFireQuote();
     ref.read(quotesProvider.notifier).fireQuote(quote);
+    ref.read(currentQuoteProvider.notifier).nextQuote();
   }
 
   void _likeQuote(Quote quote, AnalyticsService analytics) {
     analytics.logLikeQuote();
     ref.read(quotesProvider.notifier).likeQuote(quote);
+    ref.read(currentQuoteProvider.notifier).nextQuote();
   }
 
   void _dislikeQuote(Quote quote, AnalyticsService analytics) {
     analytics.logDislikeQuote();
     ref.read(quotesProvider.notifier).dislikeQuote(quote);
+    ref.read(currentQuoteProvider.notifier).nextQuote();
   }
 
   void _reportQuote(Quote quote, AnalyticsService analytics) {
     analytics.logReportQuote();
     ref.read(quotesProvider.notifier).reportQuote(quote);
+    ref.read(currentQuoteProvider.notifier).nextQuote();
+  }
+
+  void _refreshQuotes(AnalyticsService analytics) {
+    analytics.logRefreshQuotes();
+    ref.read(quotesProvider.notifier).refreshQuotes();
   }
 }
