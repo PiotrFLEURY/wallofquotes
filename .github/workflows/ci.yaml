@@ -1,0 +1,27 @@
+name: WallOfQuotes CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [web, appbundle]
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Set up very_good_cli
+        run: dart pub global activate very_good_cli
+
+      - name: Install dependencies
+        run: flutter pub get
+        
+      - name: Build app for ${{ matrix.platform }}
+        run: flutter build ${{ matrix.platform }}
+
+      - name: Run tests and check coverage
+        run: very_good test --coverage --min-coverage 80
