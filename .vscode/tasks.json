@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Generate Sources",
+      "type": "shell",
+      "command": "dart run build_runner build --delete-conflicting-outputs",
+      "problemMatcher": []
+    },
+    {
+      "label": "Update Golden for current file",
+      "type": "shell",
+      "command": "flutter test --update-goldens ${file}",
+      "problemMatcher": []
+    },
+    {
+      "label": "Update all Goldens",
+      "type": "shell",
+      "command": "flutter test --update-goldens",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run all tests",
+      "type": "shell",
+      "command": "flutter test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Format files",
+      "type": "shell",
+      "command": "dart format .",
+      "problemMatcher": []
+    },
+    {
+      "label": "Activate very good cli",
+      "type": "shell",
+      "command": "dart pub global activate very_good_cli",
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate lcov HTML report",
+      "type": "shell",
+      "command": "flutter test --coverage && genhtml coverage/lcov.info -o coverage/html",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check coverage min 80% (very_good_cli)",
+      "type": "shell",
+      "command": "very_good test --coverage --min-coverage 80",
+      "problemMatcher": []
+    }
+  ]
+}

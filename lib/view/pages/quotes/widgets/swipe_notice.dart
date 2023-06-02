@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SwipeNotice extends StatelessWidget {
   const SwipeNotice({super.key});
@@ -34,10 +33,10 @@ class SwipeNotice extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           'Swipe to see more quotes',
-          style: GoogleFonts.oswald(
-            color: Colors.white.withAlpha(100),
-            fontSize: 10,
-          ),
+          style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                color: Colors.white.withAlpha(100),
+                fontSize: 10,
+              ),
         ),
       ],
     );

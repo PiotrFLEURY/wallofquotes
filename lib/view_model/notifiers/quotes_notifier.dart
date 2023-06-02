@@ -7,9 +7,9 @@ class QuotesNotifier extends StateNotifier<List<Quote>> {
 
   final FirebaseDb _firebaseDb;
 
-  void fetchQuotes() {
+  Future<void> fetchQuotes() async {
     if (state.isNotEmpty) return;
-    _refreshQuotes();
+    await _refreshQuotes();
   }
 
   // refresh quotes
@@ -30,33 +30,33 @@ class QuotesNotifier extends StateNotifier<List<Quote>> {
     await _refreshQuotes();
   }
 
-  void updateQuote(Quote quote) {
+  Future<void> updateQuote(Quote quote) async {
     // update quote in list
     state = [
       for (final q in state)
         if (q.id == quote.id) quote else q,
     ]..sort((a, b) => a.compareTo(b));
 
-    _firebaseDb.updateQuote(quote);
+    await _firebaseDb.updateQuote(quote);
   }
 
-  void fireQuote(Quote quote) {
-    updateQuote(quote.copyWith(hotness: quote.hotness + 1));
+  Future<void> fireQuote(Quote quote) async {
+    await updateQuote(quote.copyWith(hotness: quote.hotness + 1));
   }
 
-  void likeQuote(Quote quote) {
-    updateQuote(quote.copyWith(likes: quote.likes + 1));
+  Future<void> likeQuote(Quote quote) async {
+    await updateQuote(quote.copyWith(likes: quote.likes + 1));
   }
 
-  void dislikeQuote(Quote quote) {
-    updateQuote(quote.copyWith(dislikes: quote.dislikes + 1));
+  Future<void> dislikeQuote(Quote quote) async {
+    await updateQuote(quote.copyWith(dislikes: quote.dislikes + 1));
   }
 
-  void reportQuote(Quote quote) {
-    updateQuote(quote.copyWith(reports: quote.reports + 1));
+  Future<void> reportQuote(Quote quote) async {
+    await updateQuote(quote.copyWith(reports: quote.reports + 1));
   }
 
-  void refreshQuotes() {
-    _refreshQuotes();
+  Future<void> refreshQuotes() async {
+    await _refreshQuotes();
   }
 }

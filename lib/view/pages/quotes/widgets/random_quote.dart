@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wallofquotes/model/quote.dart';
 import 'package:wallofquotes/services/analytics_service.dart';
 import 'package:wallofquotes/view/style/colors.dart';
@@ -104,11 +103,11 @@ class _RandomQuoteState extends ConsumerState<RandomQuote> {
                     randomQuote.text.isEmpty
                         ? 'Loading...'
                         : randomQuote.formattedText,
-                    style: GoogleFonts.oswald(
-                      fontSize: 48,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                          fontSize: 48,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                     textAlign: TextAlign.center,
                   ),
                 ),
