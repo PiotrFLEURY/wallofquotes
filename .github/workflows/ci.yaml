@@ -3,11 +3,9 @@ name: WallOfQuotes CI
 on: [push]
 
 jobs:
-  build:
+  test:
+    name: Run tests and check coverage
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: [web, appbundle]
     steps:
       - uses: actions/checkout@v3
 
@@ -17,14 +15,53 @@ jobs:
       - name: Set up very_good_cli
         run: dart pub global activate very_good_cli
 
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests and check coverage
+        run: very_good test --coverage --min-coverage 80
+  build-web:
+    name: Build web app
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+
       - name: Set up firebase options
         run: echo "${{ secrets.FIREBASE_OPTIONS }}" | base64 -d > lib/firebase_options.dart
 
       - name: Install dependencies
         run: flutter pub get
         
-      - name: Build app for ${{ matrix.platform }}
-        run: flutter build ${{ matrix.platform }}
+      - name: Build app for web
+        run: flutter build web
+  build-android:
+    name: Build android app
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-      - name: Run tests and check coverage
-        run: very_good test --coverage --min-coverage 80
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up firebase options
+        run: echo "${{ secrets.FIREBASE_OPTIONS }}" | base64 -d > lib/firebase_options.dart
+
+      - name: Set up Google services json
+        run: echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 -d > android/app/google-services.json
+
+      - name: Install dependencies
+        run: flutter pub get
+        
+      - name: Build app for android
+        run: flutter build appbundle
