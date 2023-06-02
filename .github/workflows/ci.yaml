@@ -18,7 +18,7 @@ jobs:
         run: dart pub global activate very_good_cli
 
       - name: Set up firebase options
-        run: echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
+        run: echo "${{ secrets.FIREBASE_OPTIONS }}" | base64 -d > lib/firebase_options.dart
 
       - name: Install dependencies
         run: flutter pub get
