@@ -1,0 +1,5 @@
+*.mocks linguist-generated=true
+*.g.dart linguist-generated=true
+*.freezed.dart linguist-generated=true
+*.look.dart linguist-generated=true
+*.lock linguist-generated=true
