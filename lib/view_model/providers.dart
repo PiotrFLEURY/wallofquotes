@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallofquotes/data_sources/firebase_db.dart';
 import 'package:wallofquotes/model/quote.dart';
@@ -27,5 +28,7 @@ final randomQuoteProvider = StateNotifierProvider<RandomQuoteNotifier, Quote?>(
 );
 
 final analyticsServiceProvider = Provider<AnalyticsService>((ref) {
-  return AnalyticsService();
+  return AnalyticsService(
+    analytics: FirebaseAnalytics.instance,
+  );
 });

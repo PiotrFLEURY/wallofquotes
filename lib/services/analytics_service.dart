@@ -1,7 +1,9 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 class AnalyticsService {
-  static final analytics = FirebaseAnalytics.instance;
+  const AnalyticsService({required this.analytics});
+
+  final FirebaseAnalytics analytics;
 
   Future<void> logAddQuote() async {
     await analytics.logEvent(
@@ -21,8 +23,8 @@ class AnalyticsService {
     );
   }
 
-  void logFireQuote() {
-    analytics.logEvent(
+  Future<void> logFireQuote() async {
+    await analytics.logEvent(
       name: 'fire_quote',
       parameters: <String, dynamic>{
         'time': DateTime.now().millisecondsSinceEpoch,
@@ -30,7 +32,7 @@ class AnalyticsService {
     );
   }
 
-  void logLikeQuote() {
+  Future<void> logLikeQuote() async {
     analytics.logEvent(
       name: 'like_quote',
       parameters: <String, dynamic>{
@@ -39,7 +41,7 @@ class AnalyticsService {
     );
   }
 
-  void logDislikeQuote() {
+  Future<void> logDislikeQuote() async {
     analytics.logEvent(
       name: 'dislike_quote',
       parameters: <String, dynamic>{
@@ -48,7 +50,7 @@ class AnalyticsService {
     );
   }
 
-  void logReportQuote() {
+  Future<void> logReportQuote() async {
     analytics.logEvent(
       name: 'report_quote',
       parameters: <String, dynamic>{
@@ -57,7 +59,7 @@ class AnalyticsService {
     );
   }
 
-  void logSwipe() {
+  Future<void> logSwipe() async {
     analytics.logEvent(
       name: 'swipe',
       parameters: <String, dynamic>{
@@ -66,7 +68,7 @@ class AnalyticsService {
     );
   }
 
-  void logRefreshQuotes() {
+  Future<void> logRefreshQuotes() async {
     analytics.logEvent(
       name: 'refresh_quotes',
       parameters: <String, dynamic>{

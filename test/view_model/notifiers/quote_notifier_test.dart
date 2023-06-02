@@ -1,15 +1,12 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:wallofquotes/data_sources/firebase_db.dart';
 import 'package:wallofquotes/model/quote.dart';
 import 'package:wallofquotes/view_model/notifiers/quotes_notifier.dart';
 
-import 'quote_notifier_test.mocks.dart';
+import '../../mocks.mocks.dart';
 
-@GenerateMocks([FirebaseDb])
 void main() {
   late MockFirebaseDb firebaseDb;
   late QuotesNotifier notifier;

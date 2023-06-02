@@ -50,3 +50,6 @@ lib/firebase_options.dart
 firebase.json
 
 coverage/
+
+# golden test failures
+test/**/failures/*.png
