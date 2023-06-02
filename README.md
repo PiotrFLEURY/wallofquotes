@@ -1,16 +1,57 @@
-# wallofquotes
+# WallOfQuotes
 
-A new Flutter project.
+WallOfQuotes is a fun app that lets you browse a list of funny quotes randomly. You can like your favorite quotes and even add new ones to the list.
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
+* Browse a list of funny quotes randomly
+* Like your favorite quotes
+* Add new quotes to the list
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Screenshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="test/view/pages/quotes/goldens/random_quote.png" height="600"></img>
+
+# Tech Stack
+
+Client: Flutter
+
+Server: Firebase
+
+# Installation
+
+Clone the repository and run the app with Flutter:
+
+```bash
+    git clone https://github.com/PiotrFLEURY/wallofquotes.git
+
+    cd wallofquotes
+
+    flutter run
+```
+
+# Running Tests
+
+To run tests, run the following command:
+
+```bash
+  flutter test
+```
+
+# Roadmap
+
+* Implement search functionality
+* Add categories to quotes
+
+# Acknowledgements
+
+[Flutter documentation](https://flutter.dev/)
+
+[Dart documentation](https://dart.dev/)
+
+[Firebase documentation](https://firebase.google.com/)
+
+# License
+
+[BSD 3-Clause License](./LICENSE)
