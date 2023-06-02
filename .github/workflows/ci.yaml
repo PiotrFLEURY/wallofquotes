@@ -10,12 +10,15 @@ jobs:
         platform: [web, appbundle]
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
 
       - name: Set up very_good_cli
         run: dart pub global activate very_good_cli
+
+      - name: Set up firebase options
+        run: echo ${{ secrets.FIREBASE_OPTIONS }} > lib/firebase_options.dart
 
       - name: Install dependencies
         run: flutter pub get
