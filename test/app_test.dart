@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:wallofquotes/model/quote.dart';
-import 'package:wallofquotes/services/analytics_service.dart';
 import 'package:wallofquotes/view/app/app.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:wallofquotes/view_model/providers.dart';
 
-import 'app_test.mocks.dart';
+import 'mocks.mocks.dart';
 
-@GenerateMocks([
-  AnalyticsService,
-])
 void main() {
   final fakeCloudFirestore = FakeFirebaseFirestore();
   fakeCloudFirestore.collection('quotes').add(
