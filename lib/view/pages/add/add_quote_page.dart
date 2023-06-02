@@ -31,28 +31,37 @@ class _AddQuotePageState extends ConsumerState<AddQuotePage> {
               ),
             ),
             const SizedBox(height: 24),
-            TextField(
-              controller: _quoteController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Citation',
+            Semantics(
+              label: 'Quote text',
+              child: TextField(
+                controller: _quoteController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Citation',
+                ),
+                maxLines: 3,
+                textInputAction: TextInputAction.next,
               ),
-              maxLines: 3,
-              textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 24),
-            TextField(
-              controller: _authorController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Auteur',
+            Semantics(
+              label: 'Quote author',
+              child: TextField(
+                controller: _authorController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Auteur',
+                ),
+                textInputAction: TextInputAction.done,
               ),
-              textInputAction: TextInputAction.done,
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: _addQuote,
-              child: const Text('Ajouter'),
+            Semantics(
+              label: 'Add quote button',
+              child: ElevatedButton(
+                onPressed: _addQuote,
+                child: const Text('Ajouter'),
+              ),
             ),
           ],
         ),
