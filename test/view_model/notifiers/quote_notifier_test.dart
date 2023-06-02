@@ -86,4 +86,48 @@ void main() {
     expect(true, notifier.state.contains(quote2));
     expect(2, notifier.state.length);
   });
+
+  // fireQuote
+  test('fireQuote updates hotness of quote in state and Firebase', () async {
+    final quote = Quote(id: 1, text: 'Quote 1', author: 'Author 1');
+    notifier.state = [quote];
+
+    await notifier.fireQuote(quote);
+
+    verify(firebaseDb.updateQuote(quote.copyWith(hotness: 1))).called(1);
+    expect(true, notifier.state.contains(quote.copyWith(hotness: 1)));
+  });
+
+  // likeQUote
+  test('likeQuote updates hotness of quote in state and Firebase', () async {
+    final quote = Quote(id: 1, text: 'Quote 1', author: 'Author 1');
+    notifier.state = [quote];
+
+    await notifier.likeQuote(quote);
+
+    verify(firebaseDb.updateQuote(quote.copyWith(likes: 1))).called(1);
+    expect(true, notifier.state.contains(quote.copyWith(likes: 1)));
+  });
+
+  // dislikeQuote
+  test('dislikeQuote updates hotness of quote in state and Firebase', () async {
+    final quote = Quote(id: 1, text: 'Quote 1', author: 'Author 1');
+    notifier.state = [quote];
+
+    await notifier.dislikeQuote(quote);
+
+    verify(firebaseDb.updateQuote(quote.copyWith(dislikes: 1))).called(1);
+    expect(true, notifier.state.contains(quote.copyWith(dislikes: 1)));
+  });
+
+  // reportQuote
+  test('reportQuote updates hotness of quote in state and Firebase', () async {
+    final quote = Quote(id: 1, text: 'Quote 1', author: 'Author 1');
+    notifier.state = [quote];
+
+    await notifier.reportQuote(quote);
+
+    verify(firebaseDb.updateQuote(quote.copyWith(reports: 1))).called(1);
+    expect(true, notifier.state.contains(quote.copyWith(reports: 1)));
+  });
 }
