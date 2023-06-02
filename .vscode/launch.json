@@ -20,6 +20,26 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "Update golden for selected test file",
+            "request": "launch",
+            "type": "dart",
+            "program": "flutter",
+            "args": [
+                "test",
+                "${file}",
+                "--update-goldens",
+            ],
+            "codeLens": {
+                "for": [
+                    "run-test",
+                    "run-test-file"
+                ]
+            },
+            "env": {
+                "FLUTTER_TEST": "true"
+            }
         }
     ]
 }
