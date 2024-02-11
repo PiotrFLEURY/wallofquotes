@@ -17,7 +17,7 @@ void main() async {
       Quote(
         text: 'Be the change you wish to see in the world',
         author: 'Mahatma Gandhi',
-      )
+      ),
     ];
 
     // Create a mock of FirebaseDb
@@ -44,7 +44,7 @@ void main() async {
     // Pump the widget and build the golden image
     await tester.pumpWidgetBuilder(
       widget,
-      wrapper: materialAppWrapper(theme: ThemeData.light()),
+      wrapper: materialAppWrapper(theme: ThemeData.light(useMaterial3: false)),
       // iPhone 13 size
       surfaceSize: const Size(390, 844),
     );

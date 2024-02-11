@@ -13,7 +13,7 @@ class QuoteTile extends StatelessWidget {
       title: Text(
         quote.formattedText,
         style: const TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
           color: Colors.white,
         ),

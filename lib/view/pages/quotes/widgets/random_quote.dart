@@ -37,6 +37,7 @@ class _RandomQuoteState extends ConsumerState<RandomQuote> {
       backgroundColor: mainColor,
       bottomNavigationBar: BottomAppBar(
         color: mainColor,
+        padding: const EdgeInsets.all(0),
         child: Container(
           height: 96,
           decoration: BoxDecoration(
