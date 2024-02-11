@@ -13,17 +13,28 @@ class QuotePage extends ConsumerStatefulWidget {
 class _QuotePageState extends ConsumerState<QuotePage> {
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: TabBar(
-          tabs: [
-            Tab(icon: Icon(Icons.format_quote)),
-            Tab(icon: Icon(Icons.list)),
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.white.withOpacity(0.5),
+          tabs: const [
+            Tab(
+              icon: Icon(
+                Icons.format_quote,
+              ),
+            ),
+            Tab(
+              icon: Icon(
+                Icons.list,
+              ),
+            ),
           ],
         ),
         backgroundColor: mainColor,
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             RandomQuote(),
             QuoteList(),

@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:wallofquotes/model/quote.dart';
 import 'package:wallofquotes/view/app/app.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:wallofquotes/view/style/colors.dart';
+import 'package:wallofquotes/view/style/theme.dart';
 import 'package:wallofquotes/view_model/providers.dart';
 
 import 'mocks.mocks.dart';
@@ -17,6 +19,11 @@ void main() {
       );
 
   final fakeAnalyticsService = MockAnalyticsService();
+
+  appTheme = ThemeData(
+    primarySwatch: mainColor.materialColor,
+    useMaterial3: false,
+  );
 
   testWidgets('App should load quote to the first page',
       (WidgetTester tester) async {
