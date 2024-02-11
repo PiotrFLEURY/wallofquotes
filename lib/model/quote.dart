@@ -1,6 +1,7 @@
 class Quote {
   int id;
   String text;
+  String? context;
   String author;
   int hotness;
   int likes;
@@ -12,6 +13,7 @@ class Quote {
   Quote({
     this.id = 0,
     required this.text,
+    this.context,
     required this.author,
     this.hotness = 0,
     this.likes = 0,
@@ -24,6 +26,7 @@ class Quote {
     return Quote(
       id: json['id'],
       text: json['text'],
+      context: json['context'],
       author: json['author'],
       hotness: json['hotness'] ?? 0,
       likes: json['likes'] ?? 0,
@@ -37,6 +40,7 @@ class Quote {
     return {
       'id': id,
       'text': text,
+      'context': context,
       'author': author,
       'hotness': hotness,
       'likes': likes,
@@ -51,6 +55,7 @@ class Quote {
 
   Quote copyWith({
     String? text,
+    String? context,
     String? author,
     int? hotness,
     int? likes,
@@ -60,6 +65,7 @@ class Quote {
     return Quote(
       id: id,
       text: text ?? this.text,
+      context: context ?? this.context,
       author: author ?? this.author,
       hotness: hotness ?? this.hotness,
       likes: likes ?? this.likes,
@@ -100,6 +106,6 @@ class Quote {
 
   @override
   String toString() {
-    return 'Quote{id: $id, text: $text, author: $author, likes: $likes, dislikes: $dislikes, reports: $reports, hotness: $hotness}';
+    return 'Quote{id: $id, text: $text, context: $context, author: $author, likes: $likes, dislikes: $dislikes, reports: $reports, hotness: $hotness}';
   }
 }

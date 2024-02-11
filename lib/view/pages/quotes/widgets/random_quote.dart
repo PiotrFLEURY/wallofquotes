@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallofquotes/model/quote.dart';
 import 'package:wallofquotes/services/analytics_service.dart';
+import 'package:wallofquotes/view/pages/quotes/widgets/quote_context.dart';
 import 'package:wallofquotes/view/style/colors.dart';
 import 'package:wallofquotes/view_model/providers.dart';
 import 'package:wallofquotes/view/pages/quotes/widgets/widgets.dart';
@@ -113,6 +114,8 @@ class _RandomQuoteState extends ConsumerState<RandomQuote> {
                   ),
                 ),
               ),
+              if (randomQuote.context != null)
+                QuoteContext(label: randomQuote.context!),
               const SizedBox(
                 height: 64,
               ),
