@@ -7,7 +7,13 @@ class FirebaseDb {
   final FirebaseFirestore firestore;
 
   Future<List<Quote>> fetchQuotes() async {
-    final dataset = await firestore.collection('quotes').get();
+    final dataset = await firestore
+        .collection('quotes')
+        .where(
+          'dislikes',
+          isNotEqualTo: 999,
+        )
+        .get();
 
     // convert to list of quotes
     return dataset.docs.map((doc) => Quote.fromJson(doc.data())).toList()

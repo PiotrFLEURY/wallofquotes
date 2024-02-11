@@ -7,9 +7,16 @@ class RandomQuoteNotifier extends StateNotifier<Quote?> {
   RandomQuoteNotifier(this.quotes) : super(null);
 
   final List<Quote> quotes;
+  final List<Quote> unseenQuotes = [];
 
   void fetchRandomQuote() {
     if (quotes.isEmpty) return;
-    state = quotes[Random().nextInt(quotes.length)];
+    if (unseenQuotes.isEmpty) {
+      unseenQuotes.addAll(quotes);
+      unseenQuotes.sort((a, b) => b.compareTo(a));
+    }
+    final randomQuote = unseenQuotes[Random().nextInt(unseenQuotes.length)];
+    unseenQuotes.remove(randomQuote);
+    state = randomQuote;
   }
 }
