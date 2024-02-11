@@ -14,6 +14,7 @@ class AddQuotePage extends ConsumerStatefulWidget {
 class _AddQuotePageState extends ConsumerState<AddQuotePage> {
   final TextEditingController _quoteController = TextEditingController();
   final TextEditingController _authorController = TextEditingController();
+  final TextEditingController _contextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,18 @@ class _AddQuotePageState extends ConsumerState<AddQuotePage> {
                   border: OutlineInputBorder(),
                   labelText: 'Auteur',
                 ),
+                textInputAction: TextInputAction.next,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Semantics(
+              label: 'Quote context',
+              child: TextField(
+                controller: _contextController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Contexte',
+                ),
                 textInputAction: TextInputAction.done,
               ),
             ),
@@ -81,12 +94,14 @@ class _AddQuotePageState extends ConsumerState<AddQuotePage> {
   void _sendQuote() {
     final text = _quoteController.text;
     final author = _authorController.text;
+    final quoteContext = _contextController.text;
     if (text.isNotEmpty && author.isNotEmpty) {
       // send quote to API
       debugPrint('quote: $text, author: $author');
       final quote = Quote(
-        author: _authorController.text,
-        text: _quoteController.text,
+        author: author,
+        text: text,
+        context: quoteContext,
       );
       ref
           .read(quotesProvider.notifier)

@@ -4,8 +4,8 @@
 
     - [x] Bump dependencies
     - [x] Migrate to material 3
-    - [ ] Add quote context
-    - [ ] Update random algorithm
+    - [x] Add quote context
+    - [x] Update random algorithm
 
 ## 1.0.0
 
